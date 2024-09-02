@@ -6,8 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': {'max': '460px'},
+      },
       fontFamily: {
-        suse: ['SUSE', 'sans-serif'],
+        'press-start': ['"Press Start 2P"', 'system-ui'],
       },
     },
   },
