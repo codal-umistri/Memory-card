@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({
   data,
   handleClick,
   flipStatus,
-}: any) => {
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -24,6 +24,7 @@ const Card: React.FC<CardProps> = ({
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  
   return (
     <div
       className={classNames('card', {

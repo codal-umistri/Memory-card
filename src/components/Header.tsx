@@ -6,6 +6,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ highscore, score }) => {
+  
   return (
     <header className="flex flex-col sm:flex-row justify-between mt-4 sm:mx-4">
       <h1 className="text-center sm:text-left">Pokémon!</h1>

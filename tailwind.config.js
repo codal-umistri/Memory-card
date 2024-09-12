@@ -24,6 +24,10 @@ export default {
       gridTemplateColumns: {
         'custom': 'repeat(auto-fill, minmax(225px, 1fr))',
       },
+      zIndex: {
+        '1': '1', 
+        '2': '2', 
+      },
     },
   },
   plugins: [],

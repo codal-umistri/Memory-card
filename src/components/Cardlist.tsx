@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
+import { fetchPokemonData } from '../services/pokemonService';
 
 // Fisher-Yates shuffle algorithm
 function shuffleArray(array: any) {
@@ -37,22 +38,12 @@ const DisplayCards: React.FC<CardlistProps> = ({
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const responses = await Promise.all(
-          Array.from({ length: 30 }, (_, i) =>
-            fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}/`)
-          )
-        );
-        const pokemons = await Promise.all(
-          responses.map((response) => response.json())
-        );
-        setPokemonData(pokemons);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching Pokemon data:', error);
-      }
-    }
+    const fetchData = async () => {
+      const adaptedPokemons = await fetchPokemonData(30);
+      setPokemonData(adaptedPokemons);
+      setLoading(false);
+    };
+
     fetchData();
   }, []);
 

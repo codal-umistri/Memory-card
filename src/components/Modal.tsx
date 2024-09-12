@@ -12,7 +12,10 @@ const DisplayModal: React.FC<ModalProps> = ({
   modalDisplay,
   setModalDisplay,
 }) => {
-  if (!modalDisplay) return null;
+  if (!modalDisplay) {
+    console.log('Modal is not displayed');
+    // return null;
+  }
 
   return (
     <div

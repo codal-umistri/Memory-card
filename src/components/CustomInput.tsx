@@ -10,6 +10,7 @@ const CustomInput: React.FC<InputProps> = ({
   cardAmount,
   handleCardAmountChange,
 }: any) => {
+  
   return (
     <div className="flex flex-col items-center mt-3">
       <label htmlFor="card-amount" className="mb-2">
