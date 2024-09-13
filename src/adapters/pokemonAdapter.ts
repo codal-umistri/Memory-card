@@ -10,7 +10,7 @@ export const adaptPokemonData = async () => {
       other: {
         dream_world: {
           front_default:
-            pokemon.sprites.other?.dreamWorld?.frontDefault || '',
+            pokemon.sprites.other?.dream_world?.front_default || '',
         },
       },
     },
