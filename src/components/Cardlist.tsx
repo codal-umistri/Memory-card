@@ -1,10 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+  FunctionComponent,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import Card from './Card';
 import { fetchPokemonData } from '../services/pokemonService';
+import { Welcome } from '../utils/definition';
 
 // Fisher-Yates shuffle algorithm
-function shuffleArray(array: any) {
+function shuffleArray(array: number[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -14,16 +20,16 @@ function shuffleArray(array: any) {
 
 interface CardlistProps {
   score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
+  setScore: Dispatch<SetStateAction<number>>;
   highscore: number;
-  setHighscore: React.Dispatch<React.SetStateAction<number>>;
-  setOutcome: React.Dispatch<React.SetStateAction<string>>;
+  setHighscore: Dispatch<SetStateAction<number>>;
+  setOutcome: Dispatch<SetStateAction<string>>;
   modalDisplay: boolean;
-  setModalDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalDisplay: Dispatch<SetStateAction<boolean>>;
   cardAmount: number | string;
 }
 
-const DisplayCards: React.FC<CardlistProps> = ({
+const DisplayCards: FunctionComponent<CardlistProps> = ({
   score,
   setScore,
   highscore,
@@ -31,15 +37,16 @@ const DisplayCards: React.FC<CardlistProps> = ({
   setOutcome,
   setModalDisplay,
   cardAmount,
-}: any) => {
-  const [pokemonData, setPokemonData] = useState<any>([]);
-  const [trackedList, setTrackedList] = useState<any>([]);
+}) => {
+  const [pokemonData, setPokemonData] = useState<Welcome[]>([]);
+  const [trackedList, setTrackedList] = useState<string[]>([]);
   const [flip, setFlip] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const adaptedPokemons = await fetchPokemonData(30);
+      console.log(adaptedPokemons);
       setPokemonData(adaptedPokemons);
       setLoading(false);
     };
@@ -49,9 +56,10 @@ const DisplayCards: React.FC<CardlistProps> = ({
 
   function trackPokemon(name: string) {
     if (!trackedList.includes(name)) {
-      setTrackedList((prevData: any) => {
+      setTrackedList((prevData: string[]) => {
         return [...prevData, name];
       });
+
       setScore((score += 1));
       randomArray = shuffleArray(randomArray);
       setFlip(true);
@@ -63,7 +71,7 @@ const DisplayCards: React.FC<CardlistProps> = ({
         setHighscore(score);
       }
 
-      if (trackedList.length === cardAmount - 1) {
+      if (trackedList.length === Number(cardAmount) - 1) {
         setOutcome('WIN');
         setModalDisplay(true);
         setTrackedList([]);
@@ -87,7 +95,7 @@ const DisplayCards: React.FC<CardlistProps> = ({
     <>
       {pokemonData.length > 0 && (
         <div className="cards-container">
-          {randomArray.map((index: any) => (
+          {randomArray.map((index: number) => (
             <Card
               key={index}
               id={index}

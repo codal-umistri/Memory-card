@@ -1,21 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import { useState, FunctionComponent } from 'react';
+import { Welcome } from '../utils/definition';
 
 type CardProps = {
   id: number;
-  data: any;
+  data: Welcome[];
   handleClick: (name: string) => void;
   flipStatus: boolean;
 };
 
-const Card: React.FC<CardProps> = ({
+const Card: FunctionComponent<CardProps> = ({
   id,
   data,
   handleClick,
   flipStatus,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -24,27 +24,27 @@ const Card: React.FC<CardProps> = ({
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-  
+
   return (
     <div
       className={classNames('card', {
-        'hover': isHovered,
-        'flip': flipStatus,
+        hover: isHovered,
+        flip: flipStatus,
       })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div
         className={classNames('card-front', {
-          'hide': flipStatus,
+          hide: flipStatus,
         })}
       >
         <img
-          src={data[id].sprites.other.dream_world.front_default}
-          alt={data[id].name}
-          onClick={() => handleClick(data[id].name)}
+          src={data[id]?.sprites?.other?.dream_world?.front_default}
+          alt={data[id]?.name}
+          onClick={() => handleClick(data[id]?.name)}
         />
-        <p>{data[id].name}</p>
+        <p className='text-center'>{data[id]?.name}</p>
       </div>
     </div>
   );

@@ -1,13 +1,12 @@
-import React from 'react';
+import { FunctionComponent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
-
 interface ModalProps {
   outcome: string;
   modalDisplay: boolean;
-  setModalDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalDisplay: Dispatch<SetStateAction<boolean>>;
 }
 
-const DisplayModal: React.FC<ModalProps> = ({
+const DisplayModal: FunctionComponent<ModalProps> = ({
   outcome,
   modalDisplay,
   setModalDisplay,
@@ -21,7 +20,7 @@ const DisplayModal: React.FC<ModalProps> = ({
     <div
       className={classNames('modal-overlay', {
         'flex flex-col': modalDisplay,
-        'hidden': !modalDisplay,
+        hidden: !modalDisplay,
       })}
       aria-modal="true"
       role="dialog"
@@ -30,7 +29,7 @@ const DisplayModal: React.FC<ModalProps> = ({
       <div
         className={classNames('modal', {
           'flex flex-col gap-4': modalDisplay,
-          'hidden': !modalDisplay,
+          hidden: !modalDisplay,
         })}
         role="document"
       >

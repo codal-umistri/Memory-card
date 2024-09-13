@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import { FunctionComponent, ChangeEvent } from 'react';
 
 type InputProps = {
   cardAmount: number | string;
-  handleCardAmountChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCardAmountChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const CustomInput: React.FC<InputProps> = ({
+const CustomInput: FunctionComponent<InputProps> = ({
   cardAmount,
   handleCardAmountChange,
-}: any) => {
-  
+}) => {
   return (
     <div className="flex flex-col items-center mt-3">
       <label htmlFor="card-amount" className="mb-2">
