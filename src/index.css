@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply m-0 p-0 font-press-start text-gray-200 bg-gray-900;
+    }
+
+    h1 {
+        @apply text-3xl;
+    }
+}
+
+@layer components {
+    .modal-overlay {
+        @apply fixed w-full h-full bg-custom-overlay justify-center items-center z-1 left-0 top-0;
+    }
+
+    .modal {
+        @apply bg-[#424242] z-2 p-8 rounded-lg border-2 border-solid border-[white];
+    }
+
+    .modal button {
+        @apply bg-[#4b5c6e] text-white border rounded cursor-pointer transition-[background-color] duration-[0.3s] px-5 py-2.5 border-[none] border-solid border-[white] hover:bg-[#2a4868];
+    }
+
+    .cards-container {
+        @apply grid justify-items-center grid-cols-custom gap-12  p-4 mx-auto;
+    }
+
+    .card {
+        @apply flex flex-col justify-center items-center w-[225px] min-h-[300px] border border-white bg-custom-radial-gradient cursor-pointer;
+    }
+
+    .card-front>img {
+        @apply w-[200px] h-[200px] p-4;
+    }
+
+    .hover {
+        @apply shadow-custom-light;
+        animation: hoverAnimation 2s alternate infinite;
+    }
+
+    .hide {
+        @apply invisible;
+    }
+
+    .flip {
+        animation: flip 0.5s ease-out alternate 2;
+    }
+}
+
+@layer utilities {
+    @keyframes hoverAnimation {
+        0% {
+            transform: rotate(-1deg);
+        }
+
+        100% {
+            transform: rotate(1deg) scale(1.05);
+        }
+    }
+
+    @keyframes flip {
+        0% {
+            transform: rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateY(180deg);
+        }
+    }
+}
